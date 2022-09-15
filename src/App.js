@@ -2,9 +2,16 @@ import Card from "./components/Card";
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
 
+const arr = [
+  { name: "Кроссовки Nike Blazer Mid Suede", price: 12999, imageURL: "/img/sneakers/1.png"},
+  { name: "Кроссовки Nike Blazer Mid Suede", price: 12999, imageURL: "/img/sneakers/3.jpg"},
+  { name: "Кроссовки Nike Air Max 270", price: 11999, imageURL: "/img/sneakers/2.jpg"},
+  { name: "Кроссовки Puma X Aka Boku Future Rider", price: 8999, imageURL: "/img/sneakers/4.jpg"},
+];
+
 function App() {
   return (
-    <div className="wrapper clear"> 
+    <div className="wrapper clear">
       <Drawer />
       <Header />
       <div className="content p-40">
@@ -16,61 +23,13 @@ function App() {
           </div>
         </div>
         <div className="d-flex justify-between">
-          <Card />
-          <div className="card">
-            <img
-              width={133}
-              height={112}
-              src="/img/sneakers/3.jpg"
-              alt="Sneakers"
-            />
-            <h5>Мужские кроссовки Nike Blazer Mid Suede</h5>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">
-                <span>Цена: </span>
-                <b>12 999 руб.</b>
-              </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <img
-              width={133}
-              height={112}
-              src="/img/sneakers/2.jpg"
-              alt="Sneakers"
-            />
-            <h5>Мужские кроссовки Nike Air Max 270</h5>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">
-                <span>Цена: </span>
-                <b>12 999 руб.</b>
-              </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <img
-              width={133}
-              height={112}
-              src="/img/sneakers/4.jpg"
-              alt="Sneakers"
-            />
-            <h5>Мужские россовки Puma X Aka Boku Future Rider</h5>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">
-                <span>Цена: </span>
-                <b>8 999 руб.</b>
-              </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-              </button>
-            </div>
-          </div>
+          {arr.map((obj) => (
+            <Card
+            title={obj.name}
+            price={obj.price}
+            imageURL={obj.imageURL}
+          />
+          ))}
         </div>
       </div>
     </div>
