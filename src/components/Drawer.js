@@ -1,10 +1,10 @@
-function Drawer() {
+function Drawer(props) {
   return (
-    <div style={{ display: "none" }} className="overlay">
+    <div style={{}} className="overlay">
       <div className="drawer">
         <h2 className="d-flex justify-between mb-30">
           Корзина
-          <img className="cu-p" src="/img/cross.svg" alt="cross" />
+          <img onClick={props.onClickCross} className="cu-p" src="/img/cross.svg" alt="cross" />
         </h2>
         <div className="items">
           <div className="cartItem d-flex align-center mb-20">
@@ -13,7 +13,7 @@ function Drawer() {
               className="cartItemImg"
             ></div>
             <div className="mr-20 flex">
-              <p className="mb-5">Мужские кроссвки Nike Blazer Mid Suede</p>
+              <p className="mb-5">Мужские кроссовки Nike Blazer Mid Suede</p>
               <b>12 999 руб.</b>
             </div>
             <img className="removeBtn" src="/img/cross.svg" alt="cross" />
