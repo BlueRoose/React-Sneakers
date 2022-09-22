@@ -1,4 +1,4 @@
-function Drawer({onClickCross, items = []}) {
+function Drawer({onClickCross, onRemove, items = []}) {
   return (
     <div style={{}} className="overlay">
       <div className="drawer">
@@ -17,7 +17,7 @@ function Drawer({onClickCross, items = []}) {
               <p className="mb-5">{obj.title}</p>
               <b>{obj.price} руб.</b>
             </div>
-            <img className="removeBtn" src="/img/cross.svg" alt="cross" />
+            <img onClick={() => onRemove(obj.id)} className="removeBtn" src="/img/cross.svg" alt="cross" />
           </div>
             ))
           }

@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Card from "./components/Card";
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
@@ -9,19 +10,24 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
 
-  React.useEffect(() => {
-    fetch("https://632b4caf1aabd8373983f5fc.mockapi.io/items")
-      .then((res) => {
-        return res.json();
+  React.useEffect(() => { 
+      axios.get("https://632b4caf1aabd8373983f5fc.mockapi.io/items").then((res) => {
+        setItems(res.data);
       })
-      .then((json) => {
-        setItems(json);
-      });
+      axios.get("https://632b4caf1aabd8373983f5fc.mockapi.io/cart").then((res) => {
+        setCartItems(res.data);
+      })
   }, []);
 
   const onAddToCart = (obj) => {
+      axios.post("https://632b4caf1aabd8373983f5fc.mockapi.io/cart", obj);
       setCartItems([...cartItems, obj]);
   };
+
+  const onRevomeItem = (id) => {
+    // axios.post(`https://632b4caf1aabd8373983f5fc.mockapi.io/cart/${id}`);
+    setCartItems((prev) => prev.filter(item => item.id != id));
+  }
 
   const onChangeSearchInput = (event) => {
       setSearchValue(event.target.value);
@@ -29,7 +35,7 @@ function App() {
 
   return (
     <div className="wrapper clear">
-      {cartOpened ? <Drawer items={cartItems} onClickCross={() => setCartOpened(false)} /> : null}
+      {cartOpened ? <Drawer items={cartItems} onClickCross={() => setCartOpened(false)} onRemove={onRevomeItem} /> : null}
       <Header onClickCart={() => setCartOpened(true)} />
       <div className="content p-40">
         <div className="d-flex align-center mb-40 justify-between">
