@@ -6,7 +6,8 @@ function Drawer({onClickCross, onRemove, items = []}) {
           Корзина
           <img onClick={onClickCross} className="cu-p" src="/img/cross.svg" alt="cross" />
         </h2>
-        <div className="items">
+        {
+          items.length > 0 ? (<div><div className="items">
           {items.map((obj) => (
               <div className="cartItem d-flex align-center mb-20">
             <div
@@ -21,8 +22,7 @@ function Drawer({onClickCross, onRemove, items = []}) {
           </div>
             ))
           }
-        </div>
-        <div className="cartTotalBlock">
+        </div><div className="cartTotalBlock">
           <ul>
             <li>
               <span>Итого:</span>
@@ -36,7 +36,13 @@ function Drawer({onClickCross, onRemove, items = []}) {
             </li>
           </ul>
           <button className="greenButton">Оформить заказ</button>
-        </div>
+        </div></div>) : (<div className="cartEmpty d-flex align-center justify-center flex-column flex">
+          <img className="mb-20" width="120px" height="120px" src="/img/empty.png" alt="" />
+          <h2>Корзина пуста</h2>
+          <p className="opacity-6">Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ</p>
+          <button onClick={onClickCross} className="greenButton">Вернуться назад</button>
+        </div>)
+        }
       </div>
     </div>
   );

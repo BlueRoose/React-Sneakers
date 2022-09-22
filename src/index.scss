@@ -83,6 +83,35 @@ width: 200px;
   }
 }
 
+.cartEmpty {
+  text-align: center;
+
+  p {
+    width: 280px;
+    line-height: 24px;
+  }
+  .greenButton {
+    width: 245px;
+    height: 40px;
+    border-radius: 18px;
+    color: #FFFFFF;
+    background: #9dd558;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  
+    &:hover {
+      background: lighten($color: #9dd558, $amount: 5%);
+    }
+  
+    &:active {
+      background: darken($color: #9dd558, $amount: 5%);
+    }
+  }
+}
+
 .cartTotalBlock {
   ul {
     display: block;
