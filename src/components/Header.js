@@ -9,9 +9,11 @@ function Header(props) {
         </div>
       </div>
       <ul className="d-flex">
-        <li className="mr-30">
-          <img className="cu-p" onClick={props.onClickCart} width={18} height={18} src="/img/cart.svg" alt="logo"/>
-          <span>1205 руб.</span>
+        <li>
+          <img className="cu-p mr-15" onClick={props.onClickCart} width={18} height={18} src="/img/cart.svg" alt="logo"/>
+        </li>
+        <li>
+          <img className="cu-p mr-15" width={18} height={18} src="/img/favorites.svg" alt="favorites" />
         </li>
         <li>
           <img width={18} height={18} src="/img/user.svg" alt="logo"/>

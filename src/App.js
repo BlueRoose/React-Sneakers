@@ -26,7 +26,7 @@ function App() {
   };
 
   const onAddToFavorite = (obj) => {
-    axios.post("https://632b4caf1aabd8373983f5fc.mockapi.io/favorites", obj);
+    // axios.post("https://632b4caf1aabd8373983f5fc.mockapi.io/favorites", obj);
     setFavoriteItems([...favoriteItems, obj]);
   }
 
