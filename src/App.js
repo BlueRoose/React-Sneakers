@@ -7,6 +7,7 @@ import Header from "./components/Header";
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
+  const [favoriteItems, setFavoriteItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
 
@@ -20,9 +21,14 @@ function App() {
   }, []);
 
   const onAddToCart = (obj) => {
-      axios.post("https://632b4caf1aabd8373983f5fc.mockapi.io/cart", obj);
-      setCartItems([...cartItems, obj]);
+    axios.post("https://632b4caf1aabd8373983f5fc.mockapi.io/cart", obj);
+    setCartItems([...cartItems, obj]);
   };
+
+  const onAddToFavorite = (obj) => {
+    axios.post("https://632b4caf1aabd8373983f5fc.mockapi.io/favorites", obj);
+    setFavoriteItems([...favoriteItems, obj]);
+  }
 
   const onRevomeItem = (id) => {
     axios.delete(`https://632b4caf1aabd8373983f5fc.mockapi.io/cart/${id}`);
@@ -35,7 +41,7 @@ function App() {
 
   return (
     <div className="wrapper clear">
-      {cartOpened ? <Drawer items={cartItems} onClickCross={() => setCartOpened(false)} onRemove={onRevomeItem} /> : null}
+      {cartOpened ? <Drawer items={cartItems} onClickCross={() => setCartOpened(false)} onRemove={onRevomeItem}/> : null}
       <Header onClickCart={() => setCartOpened(true)} />
       <div className="content p-40">
         <div className="d-flex align-center mb-40 justify-between">
@@ -52,7 +58,7 @@ function App() {
               title={item.title}
               price={item.price}
               imageUrl={item.imageUrl}
-              onFavorite={() => console.log("Добавили в закладки")}
+              onFavorite={(obj) => onAddToFavorite(obj)}
               onPlus={(obj) => onAddToCart(obj)}
             />
           ))}
