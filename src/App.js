@@ -43,7 +43,7 @@ function App() {
 
   const onAddToFavorite = async (obj) => {
     try {
-      if (favoriteItems.find(favObj => favObj.id === obj.id)) {
+      if (favoriteItems.find(favObj => Number(favObj.id) === Number(obj.id))) {
         axios.delete(`https://632b4caf1aabd8373983f5fc.mockapi.io/favorites/${obj.id}`);
     }
     else {
