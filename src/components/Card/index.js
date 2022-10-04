@@ -1,14 +1,14 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
+import AppContext from "../../context";
 import styles from "./Card.module.scss";
 
-function Card({id, title, price, imageUrl, onFavorite, onPlus, inFavorite = false, inCart = false, loading = false}) {
-  const [isAdded, setIsAdded] = React.useState(inCart);
+function Card({id, title, price, imageUrl, onFavorite, onPlus, inFavorite = false, loading = false}) {
+  const {isItemAdded} = React.useContext(AppContext);
   const [isFavorite, setIsFavorite] = React.useState(inFavorite);
 
   const onClickPlus = () => {
-    onPlus({id, title, price, imageUrl});
-    setIsAdded(!isAdded);
+    onPlus({id, title, imageUrl, price})
   }
 
   const onClickLike = () => {
@@ -34,8 +34,8 @@ function Card({id, title, price, imageUrl, onFavorite, onPlus, inFavorite = fals
           <rect x="124" y="230" rx="10" ry="10" width="32" height="32" />
         </ContentLoader> : 
         <>
-        <div className={styles.favorite} onClick={onFavorite}>
-          <img onClick={onClickLike} src={isFavorite ? "/img/like1.svg" : "/img/like0.svg"} alt="like0" />
+        <div className={styles.favorite} onClick={onClickLike}>
+          <img src={isFavorite ? "/img/like1.svg" : "/img/like0.svg"} alt="like0" />
         </div>
         <img width="100%" height={135} src={imageUrl} alt="Sneakers" />
         <h5>{title}</h5>
@@ -44,7 +44,7 @@ function Card({id, title, price, imageUrl, onFavorite, onPlus, inFavorite = fals
             <span>Цена: </span>
             <b>{price} руб.</b>
           </div>
-          <img className={styles.plus} onClick={onClickPlus} src={isAdded ? "/img/galka.svg" : "/img/galka0.svg"} alt="plus" />
+          <img className={styles.plus} onClick={onClickPlus} src={isItemAdded(id) ? "/img/galka.svg" : "/img/galka0.svg"} alt="plus" />
         </div>
         </>
       }
