@@ -1,6 +1,6 @@
 import Card from "../components/Card";
 
-function Home({items, cartItems, onAddToFavorite, onAddToCart, searchValue, onChangeSearchInput, isLoading}) {
+function Home({items, cartItems, favoriteItems, onAddToFavorite, onAddToCart, searchValue, onChangeSearchInput, isLoading}) {
 
   const renderItems = () => {
     const filtredItems = items.filter((item) =>
@@ -11,6 +11,8 @@ function Home({items, cartItems, onAddToFavorite, onAddToCart, searchValue, onCh
         key={index}
         onFavorite={(obj) => onAddToFavorite(obj)}
         onPlus={(obj) => onAddToCart(obj)}
+        inCart={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
+        inFavorite={favoriteItems.some((obj) => Number(obj.id) === Number(item.id))}
         loading={isLoading}
         {...item}
       />
