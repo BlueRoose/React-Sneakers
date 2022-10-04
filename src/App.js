@@ -12,7 +12,7 @@ function App() {
   const [cartItems, setCartItems] = React.useState([]);
   const [favoriteItems, setFavoriteItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
-  const [isLoading, setisLoading] = React.useState(true);
+  const [isLoading, setisLoading] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
 
   React.useEffect(() => {
@@ -69,7 +69,7 @@ function App() {
 
   const isItemAdded = (id) => {
     return cartItems.some((obj) => Number(obj.id) === Number(id));
-  }
+  };
 
   return (
     <AppContext.Provider value={{items, cartItems, favoriteItems, isItemAdded, onAddToFavorite, onAddToCart, setCartOpened, setCartItems}}>
