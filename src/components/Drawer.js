@@ -7,7 +7,7 @@ function Drawer({onClickCross, onRemove, items = []}) {
           <img onClick={onClickCross} className="cu-p" src="/img/cross.svg" alt="cross" />
         </h2>
         {
-          items.length > 0 ? (<div><div className="items">
+          items.length > 0 ? (<div className="d-flex flex-column flex"><div className="items">
           {items.map((obj) => (
               <div className="cartItem d-flex align-center mb-20">
             <div
