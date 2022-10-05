@@ -10,6 +10,8 @@ function Drawer({ onClickCross, onRemove, items = [] }) {
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
+  const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0);
+
   const onClickOrder = async () => {
       setIsLoading(true);
       const { data } = await axios.post('https://632b4caf1aabd8373983f5fc.mockapi.io/orders', {
@@ -57,14 +59,19 @@ function Drawer({ onClickCross, onRemove, items = [] }) {
         <div className="cartTotalBlock">
           <ul>
             <li>
-              <span>Итого:</span>
+              <span>Сумма заказа:</span>
               <div></div>
-              <b>21 498 руб. </b>
+              <b>{totalPrice} руб. </b>
             </li>
             <li>
-              <span>Налог 5%:</span>
+              <span>Скидка 5%:</span>
               <div></div>
-              <b>1074 руб. </b>
+              <b>{Math.round(totalPrice*0.05)} руб. </b>
+            </li>
+            <li>
+              <span>Итого:</span>
+              <div></div>
+              <b>{totalPrice - Math.round(totalPrice*0.05)} руб. </b>
             </li>
           </ul>
           <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
