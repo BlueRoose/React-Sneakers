@@ -3,7 +3,7 @@ import Card from "../components/Card";
 import AppContext from "../context";
 
 function Home({items, cartItems, favoriteItems, onAddToFavorite, onAddToCart, searchValue, onChangeSearchInput, isLoading}) {
-  const {isItemAdded} = React.useContext(AppContext);
+  const {isItemAdded, isItemLiked} = React.useContext(AppContext);
 
   const renderItems = () => {
     const filtredItems = items.filter((item) =>
@@ -15,7 +15,7 @@ function Home({items, cartItems, favoriteItems, onAddToFavorite, onAddToCart, se
         onFavorite={(obj) => onAddToFavorite(obj)}
         onPlus={(obj) => onAddToCart(obj)}
         inCart={isItemAdded(item && item.id)}
-        inFavorite={favoriteItems.some((obj) => Number(obj.id) === Number(item))}
+        inFavorite={isItemLiked(item && item.id)}
         loading={isLoading}
         {...item}
       />
