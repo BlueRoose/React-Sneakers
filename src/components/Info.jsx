@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import AppContext from '../context';
 
 const Info = ({title, image, description}) => {
